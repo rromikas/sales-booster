@@ -8,6 +8,7 @@ import { participant_focus, show_types } from "enumerators";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "shared/Checkbox";
+import ApiUrl from "apiUrl";
 
 const ShowForm = () => {
   const [industries, setIndustries] = useState([]);
@@ -39,7 +40,7 @@ const ShowForm = () => {
 
       formData.append("data", JSON.stringify(data));
 
-      request.open("POST", `http://localhost:1337/shows`);
+      request.open("POST", `${ApiUrl}/shows`);
 
       request.send(formData);
     },
@@ -107,17 +108,11 @@ const ShowForm = () => {
 
   useEffect(() => {
     async function getData() {
-      let res = await fetch("http://localhost:1337/countries?_limit=1000").then((res) =>
-        res.json()
-      );
+      let res = await fetch(`${ApiUrl}/countries?_limit=1000`).then((res) => res.json());
       setCountries(res);
-      let res1 = await fetch("http://localhost:1337/industries?_limit=1000").then((res) =>
-        res.json()
-      );
+      let res1 = await fetch(`${ApiUrl}/industries?_limit=1000`).then((res) => res.json());
       setIndustries(res1);
-      let res2 = await fetch("http://localhost:1337/product-categories?_limit=1000").then((res) =>
-        res.json()
-      );
+      let res2 = await fetch(`${ApiUrl}/product-categories?_limit=1000`).then((res) => res.json());
       setProductCategories(res2);
     }
     getData();
