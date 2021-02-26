@@ -119,10 +119,10 @@ const ShowForm = () => {
   }, []);
 
   return (
-    <SimpleBar className="font-bold p-14 max-h-full h-full">
+    <SimpleBar className="font-bold p-14 max-h-full h-full text-sm">
       <div className="text-4xl mb-12">Add A Show</div>
       <form onSubmit={formik.handleSubmit} className="text-black-400">
-        <div className="text-blue-400 mb-8">Show Details</div>
+        <div className="text-blue-400 mb-8 text-base">Show Details</div>
         <div className="mb-8">
           <div className="flex items-center justify-between mb-3 text-sm">
             <div>Name Of Show*</div>
@@ -195,7 +195,7 @@ const ShowForm = () => {
             </div>
             <DateTimePicker
               calendarClassName="border-0"
-              className="bg-blue-100 rounded focus:outline-none px-3 py-1 w-full border-0 font-normal"
+              className="bg-blue-100 rounded focus:outline-none px-3 py-1 w-full border-0 font-base"
               calendarIcon={null}
               clearIcon={null}
               name="start_date"
@@ -217,7 +217,7 @@ const ShowForm = () => {
             </div>
             <DateTimePicker
               calendarClassName="border-0"
-              className="bg-blue-100 rounded focus:outline-none px-3 py-1 w-full border-0 font-normal"
+              className="bg-blue-100 rounded focus:outline-none px-3 py-1 w-full border-0 font-base"
               calendarIcon={null}
               clearIcon={null}
               name="start_date"
@@ -343,7 +343,7 @@ const ShowForm = () => {
             />
           </div>
         </div>
-        <div className="text-blue-400 mb-8">Show Copy & Creatives</div>
+        <div className="text-blue-400 mb-8 text-base">Show Copy & Creatives</div>
         <div className="mb-8">
           <div className="flex items-center justify-between mb-3 text-sm max-w-xl">
             <div>Show Logo*</div>
@@ -391,7 +391,7 @@ const ShowForm = () => {
             ></Dropzone>
           </div>
         </div>
-        <div className="text-blue-400 mb-8">Show Pricing & Cost Details</div>
+        <div className="text-blue-400 mb-8 text-base">Show Pricing & Cost Details</div>
         <div className="mb-8">
           <div className="flex items-center justify-between mb-3 text-sm">
             <div>Co-exhibiting availability*</div>
