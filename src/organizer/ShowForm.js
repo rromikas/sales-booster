@@ -463,7 +463,7 @@ const ShowForm = () => {
         <div className="flex justify-end">
           <div>
             <div
-              className={`text-red mb-3 opacity-${
+              className={`text-red mb-3 text-opacity-${
                 formik.errors && formik.submitCount > 0 ? 100 : 0
               }`}
             >
