@@ -195,7 +195,7 @@ const ShowForm = () => {
             </div>
             <DateTimePicker
               calendarClassName="border-0"
-              className="bg-blue-100 rounded focus:outline-none px-3 py-1 w-full border-0 font-base"
+              className="bg-blue-100 rounded focus:outline-none px-3 py-1 w-full border-0 font-normal"
               calendarIcon={null}
               clearIcon={null}
               name="start_date"
@@ -217,7 +217,7 @@ const ShowForm = () => {
             </div>
             <DateTimePicker
               calendarClassName="border-0"
-              className="bg-blue-100 rounded focus:outline-none px-3 py-1 w-full border-0 font-base"
+              className="bg-blue-100 rounded focus:outline-none px-3 py-1 w-full border-0 font-normal"
               calendarIcon={null}
               clearIcon={null}
               name="start_date"
