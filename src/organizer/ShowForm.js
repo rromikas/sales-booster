@@ -132,7 +132,7 @@ const ShowForm = () => {
           </div>
 
           <input
-            className="bg-blue-100 rounded focus:outline-none px-3 py-1 w-full"
+            className="bg-blue-100 rounded focus:outline-none px-3 py-1.5 w-full"
             type="text"
             name="name"
             value={formik.values.name}
@@ -152,6 +152,7 @@ const ShowForm = () => {
               onBlur={() => formik.setFieldTouched("country", true)}
               onChange={(e, val) => (val ? formik.setFieldValue("country", val.value) : null)}
               filterSelectedOptions
+              className="py-0"
               classes={{ tag: "bg-blue-102" }}
               disableUnderline
               options={countries}
@@ -162,7 +163,7 @@ const ShowForm = () => {
                   {...rest}
                   InputProps={Object.assign({}, InputProps, {
                     disableUnderline: true,
-                    classes: { root: "bg-blue-100 py-1 px-3 rounded" },
+                    classes: { root: "bg-blue-100 py-0 px-3 rounded" },
                   })}
                 />
               )}
@@ -176,7 +177,7 @@ const ShowForm = () => {
               ) : null}
             </div>
             <input
-              className="bg-blue-100 rounded focus:outline-none px-3 py-1 w-full"
+              className="bg-blue-100 rounded focus:outline-none px-3 py-1.5 w-full"
               type="text"
               name="city"
               value={formik.values.city}
@@ -189,21 +190,18 @@ const ShowForm = () => {
           <div className="w-1/2 pr-2">
             <div className="flex items-center justify-between mb-3 text-sm">
               <div>Start Date*</div>
-              {formik.errors.start_date && formik.touched.start_date ? (
+              {formik.errors.start_date && formik.submitCount > 0 ? (
                 <div className="text-red">{formik.errors.start_date}</div>
               ) : null}
             </div>
             <DateTimePicker
               calendarClassName="border-0"
-              className="bg-blue-100 rounded focus:outline-none px-3 py-1 w-full border-0 font-normal"
+              className="bg-blue-100 rounded focus:outline-none px-3 py-1.5 w-full border-0 font-normal"
               calendarIcon={null}
               clearIcon={null}
               name="start_date"
-              onClockClose={() => formik.setFieldTouched("start_date", true)}
-              onCalendarClose={() => formik.setFieldTouched("start_date", true)}
               onChange={(val) => {
                 formik.setFieldValue("start_date", val);
-                formik.setFieldTouched("start_date", true);
               }}
               value={formik.values.start_date}
             />
@@ -211,21 +209,18 @@ const ShowForm = () => {
           <div className="w-1/2 pl-2">
             <div className="flex items-center justify-between mb-3 text-sm">
               <div>End Date*</div>
-              {formik.errors.end_date && formik.touched.end_date ? (
+              {formik.errors.end_date && formik.submitCount > 0 ? (
                 <div className="text-red">{formik.errors.end_date}</div>
               ) : null}
             </div>
             <DateTimePicker
               calendarClassName="border-0"
-              className="bg-blue-100 rounded focus:outline-none px-3 py-1 w-full border-0 font-normal"
+              className="bg-blue-100 rounded focus:outline-none px-3 py-1.5 w-full border-0 font-normal"
               calendarIcon={null}
               clearIcon={null}
               name="start_date"
-              onClockClose={() => formik.setFieldTouched("end_date", true)}
-              onCalendarClose={() => formik.setFieldTouched("end_date", true)}
               onChange={(val) => {
                 formik.setFieldValue("end_date", val);
-                formik.setFieldTouched("end_date", true);
               }}
               value={formik.values.end_date}
             />
@@ -301,7 +296,7 @@ const ShowForm = () => {
                   {...rest}
                   InputProps={Object.assign({}, InputProps, {
                     disableUnderline: true,
-                    classes: { root: "bg-blue-100 py-1 px-3 rounded" },
+                    classes: { root: "bg-blue-100 py-0 px-3 rounded" },
                   })}
                 />
               )}
@@ -336,7 +331,7 @@ const ShowForm = () => {
                   {...rest}
                   InputProps={Object.assign({}, InputProps, {
                     disableUnderline: true,
-                    classes: { root: "bg-blue-100 py-1 px-3 rounded" },
+                    classes: { root: "bg-blue-100 py-0 px-3 rounded" },
                   })}
                 />
               )}
