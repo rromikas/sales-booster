@@ -435,7 +435,7 @@ const ShowForm = () => {
                 }}
                 checked={formik.values.stand_type === "Modular By Organizer"}
               ></Checkbox>
-              <div>No</div>
+              <div>Modular By Organizer</div>
             </div>
             <div className="flex items-center w-1/2 pl-2">
               <Checkbox
@@ -445,7 +445,7 @@ const ShowForm = () => {
                 }}
                 checked={formik.values.stand_type === "External"}
               ></Checkbox>
-              <div>Yes</div>
+              <div>External</div>
             </div>
           </div>
         </div>
@@ -461,7 +461,7 @@ const ShowForm = () => {
               accept=".pdf,.xml"
               files={formik.values.pricing_documents}
               text="Upload a .pdf or .xml document"
-              onFiles={(files) => formik.setFieldValue("pricing_documents", [files[0]])}
+              onFiles={(files) => formik.setFieldValue("pricing_documents", files)}
             ></Dropzone>
           </div>
         </div>
