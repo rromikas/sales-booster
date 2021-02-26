@@ -6,11 +6,9 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-@layer utilities {
-  .simplebar-scrollbar::before {
-    background-color: #c4c4c4 !important;
-  }
-  .react-datetime-picker__wrapper {
-    border: none !important;
-  }
+.simplebar-scrollbar::before {
+  background-color: #c4c4c4 !important;
+}
+.react-datetime-picker__wrapper {
+  border: none !important;
 }
