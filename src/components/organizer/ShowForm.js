@@ -66,7 +66,6 @@ const ShowForm = () => {
       stand_type: "",
       pricing_documents: [],
     },
-    validateOnChange: false,
     validationSchema: Yup.object().shape({
       name: Yup.string().max(50, "Too long").required("Required"),
       country: Yup.string().required("Required"),
