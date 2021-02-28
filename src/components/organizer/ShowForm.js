@@ -52,8 +52,6 @@ const Autocomplete = (props) => {
 };
 
 const ShowForm = () => {
-  const inputClasses = useStyles();
-
   const formik = useFormik({
     onSubmit: async (values) => {
       const request = new XMLHttpRequest();
@@ -95,7 +93,7 @@ const ShowForm = () => {
       logo: [],
       description: "",
       additional_creatives: [],
-      coexhibiting_available: "",
+      coexhibiting_available: false,
       stand_type: "",
       pricing_documents: [],
     },
@@ -134,7 +132,7 @@ const ShowForm = () => {
         message: "Required",
         test: (arr) => arr.length !== 0,
       }),
-      coexhibiting_available: Yup.boolean().required(),
+      coexhibiting_available: Yup.bool().required(),
       stand_types: "",
       pricing_documents: Yup.array().test({
         message: "Required",
@@ -142,6 +140,8 @@ const ShowForm = () => {
       }),
     }),
   });
+
+  console.log("formik values", formik.values, formik.errors);
 
   return (
     <div className="font-bold max-h-full h-full text-sm">
