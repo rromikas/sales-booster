@@ -110,6 +110,8 @@ const ShowForm = () => {
     }),
   });
 
+  console.log("formik values", formik.values);
+
   return (
     <div className="font-bold max-h-full h-full text-sm">
       <div className="text-3xl mb-12">Add A Show</div>
@@ -142,7 +144,7 @@ const ShowForm = () => {
             </div>
             <Autocomplete
               onBlur={() => formik.setFieldTouched("country", true)}
-              onChange={(e, val) => (val ? formik.setFieldValue("country", val.value) : null)}
+              onChange={(e, val) => (val ? formik.setFieldValue("country", val) : null)}
               filterSelectedOptions
               className="py-0"
               classes={{ tag: "bg-blue-102" }}
@@ -269,12 +271,7 @@ const ShowForm = () => {
           <div>
             <Autocomplete
               onBlur={() => formik.setFieldTouched("industry_focus", true)}
-              onChange={(e, val) =>
-                formik.setFieldValue(
-                  "industry_focus",
-                  val.map((x) => x.value)
-                )
-              }
+              onChange={(e, val) => formik.setFieldValue("industry_focus", val)}
               multiple
               filterSelectedOptions
               classes={{ tag: "bg-blue-102" }}
@@ -303,12 +300,7 @@ const ShowForm = () => {
           <div>
             <Autocomplete
               onBlur={() => formik.setFieldTouched("product_categories", true)}
-              onChange={(e, val) =>
-                formik.setFieldValue(
-                  "product_categories",
-                  val.map((x) => x.value)
-                )
-              }
+              onChange={(e, val) => formik.setFieldValue("product_categories", val)}
               multiple
               filterSelectedOptions
               classes={{ tag: "bg-blue-102" }}
