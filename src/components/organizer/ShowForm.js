@@ -440,7 +440,9 @@ const ShowForm = () => {
           <div>
             <div
               className={`text-red mb-3 ${
-                formik.errors && formik.submitCount > 0 ? "text-opacity-100" : "text-opacity-0"
+                Object.keys(formik.errors).length && formik.submitCount > 0
+                  ? "text-opacity-100"
+                  : "text-opacity-0"
               }`}
             >
               Form has missing fields
@@ -449,7 +451,7 @@ const ShowForm = () => {
               type="submit"
               className="font-bold bg-blue-400 rounded-xl px-16 py-2 text-white cursor-pointer outline-none hover:bg-blue-401 active:bg-blue-402 transition select-none"
             >
-              Add Show
+              {formik.isSubmitting ? "Loading..." : "Add Show"}
             </button>
           </div>
         </div>
