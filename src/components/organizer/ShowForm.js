@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Dropzone from "components/shared/Dropzone";
-import SimpleBar from "simplebar-react";
 import DateTimePicker from "react-datetime-picker";
 import { participant_focus, show_types } from "enumerators";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import { default as _Autocomplete } from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import { default as _Checkbox } from "components/shared/Checkbox";
 import ApiUrl from "apiUrl";
 import { industries, productCategories, countries } from "enumerators";
+import { makeStyles } from "@material-ui/core/styles";
 
 const Checkbox = (props) => {
   return (
@@ -20,7 +20,40 @@ const Checkbox = (props) => {
   );
 };
 
+const useStyles = makeStyles({
+  container: {
+    minHeight: 32,
+  },
+});
+
+const Autocomplete = (props) => {
+  const inputClasses = useStyles();
+  return (
+    <_Autocomplete
+      {...props}
+      className="py-0"
+      classes={{ tag: "bg-blue-102 h-6" }}
+      disableUnderline
+      defaultValue={[]}
+      renderInput={({ InputProps, ...rest }) => (
+        <TextField
+          {...rest}
+          InputProps={Object.assign({}, InputProps, {
+            disableUnderline: true,
+            classes: {
+              root: `${inputClasses.container} bg-blue-100 px-3 rounded`,
+              input: "p-0",
+            },
+          })}
+        />
+      )}
+    ></_Autocomplete>
+  );
+};
+
 const ShowForm = () => {
+  const inputClasses = useStyles();
+
   const formik = useFormik({
     onSubmit: async (values) => {
       const request = new XMLHttpRequest();
@@ -110,8 +143,6 @@ const ShowForm = () => {
     }),
   });
 
-  console.log("formik values", formik.values);
-
   return (
     <div className="font-bold max-h-full h-full text-sm">
       <div className="text-3xl mb-12">Add A Show</div>
@@ -146,20 +177,7 @@ const ShowForm = () => {
               onBlur={() => formik.setFieldTouched("country", true)}
               onChange={(e, val) => (val ? formik.setFieldValue("country", val) : null)}
               filterSelectedOptions
-              className="py-0"
-              classes={{ tag: "bg-blue-102" }}
-              disableUnderline
               options={countries}
-              defaultValue={[]}
-              renderInput={({ InputProps, ...rest }) => (
-                <TextField
-                  {...rest}
-                  InputProps={Object.assign({}, InputProps, {
-                    disableUnderline: true,
-                    classes: { root: "bg-blue-100 py-0 px-3 rounded" },
-                  })}
-                />
-              )}
             />
           </div>
           <div className="w-1/2 pl-2">
@@ -274,19 +292,7 @@ const ShowForm = () => {
               onChange={(e, val) => formik.setFieldValue("industry_focus", val)}
               multiple
               filterSelectedOptions
-              classes={{ tag: "bg-blue-102" }}
-              disableUnderline
               options={industries}
-              defaultValue={[]}
-              renderInput={({ InputProps, ...rest }) => (
-                <TextField
-                  {...rest}
-                  InputProps={Object.assign({}, InputProps, {
-                    disableUnderline: true,
-                    classes: { root: "bg-blue-100 py-1.5 px-3 rounded", input: "p-0" },
-                  })}
-                />
-              )}
             />
           </div>
         </div>
@@ -303,19 +309,8 @@ const ShowForm = () => {
               onChange={(e, val) => formik.setFieldValue("product_categories", val)}
               multiple
               filterSelectedOptions
-              classes={{ tag: "bg-blue-102" }}
-              disableUnderline
+              classes={{ tag: "bg-blue-102 p-0 h-6" }}
               options={productCategories}
-              defaultValue={[]}
-              renderInput={({ InputProps, ...rest }) => (
-                <TextField
-                  {...rest}
-                  InputProps={Object.assign({}, InputProps, {
-                    disableUnderline: true,
-                    classes: { root: "bg-blue-100 py-0 px-3 rounded" },
-                  })}
-                />
-              )}
             />
           </div>
         </div>
