@@ -42,7 +42,7 @@ const Shows = ({ setPage }) => {
             className="p-8 rounded-lg bg-gray-300 font-bold text-center mr-9 mb-9 text-sm"
           >
             <div
-              className="mx-auto bg-center bg-cover w-20 h-20 mb-5"
+              className="mx-auto bg-center bg-cover w-20 h-20 mb-5 rounded-md"
               style={{ backgroundImage: `url(${AssetsUrlPrefix}${x.logo.url})` }}
             ></div>
             <div className="h-20">
