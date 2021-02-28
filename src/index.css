@@ -9,6 +9,11 @@ html {
 body {
   font-family: "Open Sans", sans-serif;
 }
+input,
+button,
+textarea {
+  font-family: "Open Sans", sans-serif;
+}
 
 .simplebar-scrollbar::before {
   background-color: #c4c4c4 !important;

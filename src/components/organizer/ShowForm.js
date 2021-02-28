@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import Dropzone from "shared/Dropzone";
+import Dropzone from "components/shared/Dropzone";
 import SimpleBar from "simplebar-react";
 import DateTimePicker from "react-datetime-picker";
 import { participant_focus, show_types } from "enumerators";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
-import Checkbox from "shared/Checkbox";
+import { default as _Checkbox } from "components/shared/Checkbox";
 import ApiUrl from "apiUrl";
+import { industries, productCategories, countries } from "enumerators";
+
+const Checkbox = (props) => {
+  return (
+    <_Checkbox
+      {...props}
+      className="mr-4 w-7 h-7 rounded bg-blue-100 hover:bg-blue-101 focus:bg-blue-102 flex items-center justify-center transition cursor-pointer flex-shrink-0"
+    ></_Checkbox>
+  );
+};
 
 const ShowForm = () => {
-  const [industries, setIndustries] = useState([]);
-  const [productCategories, setProductCategories] = useState([]);
-  const [countries, setCountries] = useState([]);
-
   const formik = useFormik({
     onSubmit: async (values) => {
-      console.log("values", values);
       const request = new XMLHttpRequest();
       request.onreadystatechange = function () {
         if (request.readyState == XMLHttpRequest.DONE) {
@@ -106,21 +111,9 @@ const ShowForm = () => {
     }),
   });
 
-  useEffect(() => {
-    async function getData() {
-      let res = await fetch(`${ApiUrl}/countries?_limit=1000`).then((res) => res.json());
-      setCountries(res);
-      let res1 = await fetch(`${ApiUrl}/industries?_limit=1000`).then((res) => res.json());
-      setIndustries(res1);
-      let res2 = await fetch(`${ApiUrl}/product-categories?_limit=1000`).then((res) => res.json());
-      setProductCategories(res2);
-    }
-    getData();
-  }, []);
-
   return (
-    <SimpleBar className="font-bold p-14 max-h-full h-full text-sm">
-      <div className="text-4xl mb-12">Add A Show</div>
+    <div className="font-bold max-h-full h-full text-sm">
+      <div className="text-3xl mb-12">Add A Show</div>
       <form onSubmit={formik.handleSubmit} className="text-black-400">
         <div className="text-blue-400 mb-8 text-base">Show Details</div>
         <div className="mb-8">
@@ -156,7 +149,6 @@ const ShowForm = () => {
               classes={{ tag: "bg-blue-102" }}
               disableUnderline
               options={countries}
-              getOptionLabel={(option) => option.value}
               defaultValue={[]}
               renderInput={({ InputProps, ...rest }) => (
                 <TextField
@@ -289,14 +281,13 @@ const ShowForm = () => {
               classes={{ tag: "bg-blue-102" }}
               disableUnderline
               options={industries}
-              getOptionLabel={(option) => option.value}
               defaultValue={[]}
               renderInput={({ InputProps, ...rest }) => (
                 <TextField
                   {...rest}
                   InputProps={Object.assign({}, InputProps, {
                     disableUnderline: true,
-                    classes: { root: "bg-blue-100 py-0 px-3 rounded" },
+                    classes: { root: "bg-blue-100 py-1.5 px-3 rounded", input: "p-0" },
                   })}
                 />
               )}
@@ -324,7 +315,6 @@ const ShowForm = () => {
               classes={{ tag: "bg-blue-102" }}
               disableUnderline
               options={productCategories}
-              getOptionLabel={(option) => option.value}
               defaultValue={[]}
               renderInput={({ InputProps, ...rest }) => (
                 <TextField
@@ -463,8 +453,8 @@ const ShowForm = () => {
         <div className="flex justify-end">
           <div>
             <div
-              className={`text-red mb-3 text-opacity-${
-                formik.errors && formik.submitCount > 0 ? 100 : 0
+              className={`text-red mb-3 ${
+                formik.errors && formik.submitCount > 0 ? "text-opacity-100" : "text-opacity-0"
               }`}
             >
               Form has missing fields
@@ -478,7 +468,7 @@ const ShowForm = () => {
           </div>
         </div>
       </form>
-    </SimpleBar>
+    </div>
   );
 };
 

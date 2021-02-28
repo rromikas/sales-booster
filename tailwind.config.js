@@ -10,9 +10,10 @@ module.exports = {
       red: "#ff4f4f",
       transparent: "transparent",
       current: "currentColor",
-      black: { 400: "#4F4F4F" },
+      black: { 400: "#4F4F4F", 900: "black" },
       white: colors.white,
       gray: {
+        300: "#F2F2F2",
         400: "#E5E5E5",
         450: "#BDBDBD",
         500: "#C4C4C4",
@@ -39,5 +40,5 @@ module.exports = {
       backgroundColor: ["active"],
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
