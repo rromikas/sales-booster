@@ -19,7 +19,7 @@ const Dashboard = () => {
       case 1:
         return <Shows setPage={setPage}></Shows>;
       case 11:
-        return <AddShowForm></AddShowForm>;
+        return <AddShowForm setPage={setPage}></AddShowForm>;
     }
   };
   return (

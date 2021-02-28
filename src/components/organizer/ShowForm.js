@@ -51,34 +51,37 @@ const Autocomplete = (props) => {
   );
 };
 
-const ShowForm = () => {
+const ShowForm = ({ setPage }) => {
   const formik = useFormik({
     onSubmit: async (values) => {
-      const request = new XMLHttpRequest();
-      request.onreadystatechange = function () {
-        if (request.readyState == XMLHttpRequest.DONE) {
-          alert(request.responseText);
-        }
-      };
-      const formData = new FormData();
-      const data = {};
-      const valuesKeys = Object.keys(values);
+      await new Promise((resolve, reject) => {
+        const request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+          if (request.readyState == XMLHttpRequest.DONE) {
+            resolve();
+          }
+        };
+        const formData = new FormData();
+        const data = {};
+        const valuesKeys = Object.keys(values);
 
-      valuesKeys.forEach((key) => {
-        if (!["additional_creatives", "logo", "pricing_documents"].includes(key)) {
-          data[key] = values[key];
-        } else {
-          values[key].forEach((file) => {
-            formData.append(`files.${key}`, file, file.name);
-          });
-        }
+        valuesKeys.forEach((key) => {
+          if (!["additional_creatives", "logo", "pricing_documents"].includes(key)) {
+            data[key] = values[key];
+          } else {
+            values[key].forEach((file) => {
+              formData.append(`files.${key}`, file, file.name);
+            });
+          }
+        });
+
+        formData.append("data", JSON.stringify(data));
+
+        request.open("POST", `${ApiUrl}/shows`);
+
+        request.send(formData);
       });
-
-      formData.append("data", JSON.stringify(data));
-
-      request.open("POST", `${ApiUrl}/shows`);
-
-      request.send(formData);
+      setPage(1);
     },
     initialValues: {
       name: "",
